@@ -1,0 +1,217 @@
+<!doctype html>
+<html ng-app="simplonR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SimplonR</title>
+    <link rel="stylesheet" href="web/css/bootstrap.min.css">
+    <link rel="stylesheet" href="web/font-awesome/css/font-awesome.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+    <!-- include material design icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--    <link rel="stylesheet" href="web/css/style.css">-->
+    <style>
+        body {
+            padding-top: 30px;
+        }
+        
+        .fa {
+            margin: 3px;
+        }
+        
+        small {
+            display: block;
+            line-height: 1.5;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body ng-controller="ApprenantsController as apprenantCtrl">
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Liste des apprenants</h4>
+
+                <section ng-init="apprenantCtrl.getAll()">
+                    <input type="text" ng-model="searchText" class="form-control" placeholder="Find apprenant">
+                    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
+
+
+
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="http://theawesomer.com/photos/2010/06/060410_Facebook_profile_pic_1.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i class="material-icons right">more_vert</i></span>
+                                <p><a href="#">{[{ apprenant.status }]}</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i class="material-icons right">close</i></span>
+                                <p>Birth date : {[{ apprenant.birth_date | date }]}</p>
+                                <p>Birth place : {[{ apprenant.birth_place }]}</p>
+                                <p>Birth country : {[{ apprenant.birth_country }]}</p>
+                                <p>Adress : {[{ apprenant.adress }]}</p>
+                                <p>Nationality : {[{ apprenant.nationality }]}</p>
+                                <p>Mail : {[{ apprenant.email }]}</p>
+                                <p>Phone number : {[{ apprenant.phone }]}</p>
+                                <p>English level : {[{ apprenant.english_level }]}</p>
+                                <p>Codecademy : {[{ apprenant.codecademy_profile }]}</p>
+                                <p>Last diploma : {[{ apprenant.last_diploma }]}</p>
+                                <p>Pole emploi : {[{ apprenant.pole_emploi_number }]}</p>
+                                
+                                    <a ng-click="apprenantCtrl.selectEdit(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
+                            </div>
+                            
+                            <a ng-click="apprenantCtrl.deleteCandidat(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </section>
+
+
+
+
+
+
+
+
+
+
+                <!-- Modal Create Apprenant -->
+                <div id="modal-product-form" class="modal">
+                    <div class="modal-content">
+                        <h4 id="modal-product-title">Nouveau apprenant</h4>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.surname" type="text" class="validate" id="form-surname" placeholder="Type your lastname..." />
+                                <label for="apprenantCtrl.surname">Lastname</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.firstname" type="text" class="validate" placeholder="Type your firstname...">
+                                <label for="apprenantCtrl.firstname">Firstname</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.birth_date" type="date" class="" id="form-birthdate">
+                                <label for="apprenantCtrl.birth_date">Birth Date</label>
+                            </div>
+
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.birth_place" type="text" class="validate" id="form-birthplace" placeholder="Type your birth place..." />
+                                <label for="apprenantCtrl.birth_place">Birth Place</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.birth_country" type="text" class="validate" id="form-birthcountry" placeholder="Type your birth country..." />
+                                <label for="apprenantCtrl.birth_country">Birth Country</label>
+                            </div>
+
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.adress" type="text" class="validate" id="form-adress" placeholder="Type your current adress..." />
+                                <label for="apprenantCtrl.adress">Adress</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.nationality" type="text" class="validate" id="form-nationality" placeholder="Type your nationality..." />
+                                <label for="apprenantCtrl.nationality">Nationality</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.email" type="text" class="validate" id="form-email" placeholder="Type your email..." />
+                                <label for="apprenantCtrl.email">Mail</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.phone" type="text" class="validate" id="form-phone" placeholder="Type your phone number..." />
+                                <label for="apprenantCtrl.phone">Phone</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.codecademy_profile" type="text" class="validate" id="form-codecademyprofile" placeholder="Paste here your codecademy profile link..." />
+                                <label for="apprenantCtrl.codecademy_profile">Codecademy</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.english_level" type="text" class="validate" id="form-englishlevel" placeholder="Type your english level..." />
+                                <label for="apprenantCtrl.english_level">English level</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.last_diploma" type="text" class="validate" id="form-lastdiploma" placeholder="Type your last diploma..." />
+                                <label for="apprenantCtrl.last_diploma">Last diploma</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input ng-model="apprenantCtrl.pole_emploi_number" type="text" class="validate" id="form-poleemploinumber" placeholder="Type your pole emploi number..." />
+                                <label for="apprenantCtrl.pole_emploi_number">Pole Emploi</label>
+                            </div>
+
+                            
+
+
+                            <!-- Boutons d'édition -->
+                            <div class="input-field col s12">
+                                <a id="btn-create-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="apprenantCtrl.createCandidat()"><i class="material-icons left">add</i>Create</a>
+
+                                <a id="btn-update-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="apprenantCtrl.updateApprenant(apprenant.id)"><i class="material-icons left">edit</i>Save Changes</a>
+
+                                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fixed-action-btn" style="bottom:45px; right:24px;">
+                    <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-product-form" ng-click="apprenantCtrl.showCreateForm()"><i class="large material-icons">add</i></a>
+                </div>
+
+
+            </div>
+            <!-- end col s12 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.js"></script>
+
+    <script type="text/javascript" src="web/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="web/js/moment.js"></script>
+    <script type="text/javascript" src="web/js/app.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // initialize modal
+            $('.modal-trigger').leanModal();
+
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 100, // Creates a dropdown of 15 years to control year
+                format: 'dd-mm-yyyy' });
+            });
+    </script>
+</body>
+
+</html>
