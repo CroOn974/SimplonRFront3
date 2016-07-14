@@ -1,0 +1,20 @@
+{
+  "name": "SimplonRFront2",
+  "homepage": "https://github.com/Dipsy974/SimplonRFront2",
+  "authors": [
+    "Elliot Bouvier <elliotbouvier@yahoo.fr>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "sweetalert": "^1.1.3"
+  }
+}
