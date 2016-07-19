@@ -14,8 +14,8 @@
         $httpProvider.defaults.headers.delete = {};
 
     });
-    
-    
+
+
 
     /*app.config('RestangularProvider', function (RestangularProvider) {
         RestangularProvider.setBaseUrl('http://localhost:8080/gestionApprenant2/intFormateur.html/api');
@@ -29,8 +29,8 @@
             }
         })
     });*/
-    
-    
+
+
 
 
     app.controller('ApprenantsController', ['$http', function ($http) {
@@ -230,31 +230,31 @@
 
     }]);
 
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
     app.controller('AuthController', ['$http', '$window', function ($http,$window) {
         var ctrl = this;
         this.auth = auth;
-        this.logOut = logOut; 
+        this.logOut = logOut;
         this.message = "";
 
         if($window.sessionStorage.length == 0){
                     this.isAuth = false;
 
-            
+
         }
         else{
             this.isAuth = true;
-            
+
         }
-       
-    
+
+
 
         function auth(){
 
@@ -263,12 +263,12 @@
             .success(function (data, status, headers, config) {
                 $window.sessionStorage.token = data.token;
                 ctrl.message = 'Welcome';
-                
-                $window.location.reload(); 
 
-                
-                
-                
+                $window.location.reload();
+
+
+
+
             })
             .error(function (data, status, headers, config) {
                 // Erase the token if the user fails to log in
@@ -279,12 +279,12 @@
                 Materialize.toast("Identifiants invalides" , 4000);
             });
         };
-        
-        
+
+
         function logOut(){
              delete $window.sessionStorage.token;
-             $window.location.reload(); 
-            
+             $window.location.reload();
+
         };
     }]);
 
@@ -305,8 +305,8 @@
             }
         };
     });
-    
-    //---------------------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------------------------
 
 app.controller('TrainerController', ['$http', function ($http) {
 
@@ -366,7 +366,7 @@ app.controller('TrainerController', ['$http', function ($http) {
 
   //Create Trainer
 
-  
+
 
   store.createTrainer = function () {
 
@@ -425,14 +425,99 @@ app.controller('TrainerController', ['$http', function ($http) {
   };
 
 }]);
-    
-    
-    
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+app.controller('AdminController', ['$http', function ($http) {
+
+  var store = this;
+
+  store.admin = [];
+
+  //Fonctions controle modals
+
+  store.showCreateForm = function () {
+
+      // clear form
+
+      store.clearForm();
+
+      // change modal title
+
+      //$('#modal-trainer-title').text("Create New Apprenant");
+
+      store.createAdmin = 'Create new admin';
+
+      // hide update trainer button
+
+      $('#btn-update-trainer').hide();
+
+      // show create trainer button
+
+      $('#btn-create-trainer').show();
+
+  };
+
+  store.clearForm = function () {
+
+      store.surname = "";
+
+      store.firstname = "";
+
+      store.adress = "";
+
+      store.phone = "";
+
+  };
+
+  //Fonctions CRUD
+  //Create Trainer
+
+  store.createAdmin = function () {
+
+      $http.post('http://127.0.0.1:8000/api/users/users.json', {
+
+          'username': store.username,
+
+          'email': store.email,
+
+          'password': store.password,
+
+          'administrator': {
+
+            'surname': store.surname,
+
+            'firstname': store.firstname,
+
+            'adress': store.adress,
+
+            'phone': store.phone
+
+          }
+
+      }).success(function (data, status, header, config) {
+
+          Materialize.toast(data, 4000);
+
+          // close modal
+
+          $('#modal-admin-form').closeModal();
+
+          // clear modal content
+
+          store.clearForm();
+
+          // refresh the list
+
+          store.getAll();
+
+      });
+
+  };
+
+
+}]);
 
 
 })();
-
-
-
-

@@ -39,7 +39,9 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
                     </li>
+
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1" ng-show="authCtrl.isAuth">Administration<i class="material-icons right">arrow_drop_down</i></a></li>
+
 
 
                     <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter" ng-click="authCtrl.logOut()" ng-show="authCtrl.isAuth">Déconnexion</a>
@@ -80,6 +82,7 @@
             <div class="row">
                 <div class="col s8 offset-s2">
                     <div class="card-panel cyan">
+
                         <span class="white-text">Groupe :
 Mathieu, Elliot[scrum master], Guillaume
 <br>
@@ -100,6 +103,7 @@ Les formateurs et dirigeants de Simplon Réunion peuvent lister toutes les candi
 
 L'application pourra permettre de lier une note pour chaque apprenant.
                 
+
           </span>
                     </div>
                 </div>
@@ -110,7 +114,9 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
         <!--<login-user></login-user>-->
         <div ng-controller="TrainerController as trainerCtrl">
+
             <div class="container" ng-show="authCtrl.isAuth">
+
 
                 <div class="row">
 
@@ -272,23 +278,135 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
             </div>
 
+
             <!-- Fin list Fomateur-->
 
 
-            <div class="container">
-                <div class="row">
-                    <div class="col s12" ng-show="authCtrl.isAuth">
-                        <h4>List of applicants</h4>
-                        <section ng-init="apprenantCtrl.getAll()">
-                            <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
-                            <div class="col s12 m6 l4" ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
-                                <div class="card">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
-                                class="material-icons right">more_vert</i></span>
+   
+
+<!-- Modal Create Admin -->
+
+<div id="modal-admin-form" ng-controller="AdminController as adminCtrl" class="modal">
+
+    <div class="modal-content">
+
+        <h4 id="modal-trainer-title">{[{ adminCtrl.createAdmin }]}</h4>
+
+        <div class="row">
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.surname" type="text" class="validate" id="form-surname"
+
+                       placeholder="Type your lastname..."/>
+
+                <label for="adminCtrl.surname">Lastname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.firstname" type="text" class="validate"
+
+                       placeholder="Type your firstname...">
+
+                <label for="adminCtrl.firstname">Firstname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.username" type="text" class="validate"
+
+                       id="form-username"
+
+                       placeholder="Type your username..."/>
+
+                <label for="adminCtrl.username">Username</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.password" type="text" class="validate"
+
+                       id="form-password" placeholder="Type your password..."/>
+
+                <label for="adminCtrl.password">Password</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.adress" type="text" class="validate" id="form-adress"
+
+                       placeholder="Type your current adress..."/>
+
+                <label for="adminCtrl.adress">Adress</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.email" type="text" class="validate" id="form-email"
+
+                       placeholder="Type your email..."/>
+
+                <label for="adminCtrl.email">Mail</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.phone" type="text" class="validate" id="form-phone"
+
+                       placeholder="Type your phone number..."/>
+
+                <label for="adminCtrl.phone">Phone</label>
+
+            </div>
+
+            <!-- Boutons d'édition -->
+
+            <div class="input-field col s12">
+
+                <a id="btn-create-admin" class="waves-effect waves-light btn margin-bottom-1em"
+
+                   ng-click="adminCtrl.createAdmin()"><i
+
+                        class="material-icons left">add</i>Create</a>
+
+                <a id="btn-update-admin" class="waves-effect waves-light btn margin-bottom-1em"
+
+                   ng-click="adminCtrl.updateAdmin(admin.id)"><i
+
+                        class="material-icons left">edit</i>Save Changes</a>
+
+                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+
+                        class="material-icons left">close</i>Close</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col s12" ng-show="authCtrl.isAuth">
+                    <h4>List of applicants</h4>
+                    <section ng-init="apprenantCtrl.getAll()">
+                        <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
+                        <div class="col s12 m6 l4" ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i class="material-icons right">more_vert</i></span>
                                         <p><a href="#">{[{ apprenant.status }]}</a></p>
                                     </div>
                                     <div class="card-reveal">
