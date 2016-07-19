@@ -1,0 +1,11 @@
+{
+    "jscodehints.detectedExclusions": [
+        "underscore.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/restangular/dist/restangular.min.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/restangular/src/restangular.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/restangular/test/restangularSpec.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/default-params.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-click.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-dom.js"
+    ]
+}

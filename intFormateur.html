@@ -14,52 +14,55 @@
     <!--    <link rel="stylesheet" href="web/css/style.css">-->
 </head>
 <body id="home" ng-controller="ApprenantsController as apprenantCtrl">
-<nav>
-    <div class="nav-wrapper container">
-        <a href="#home" class="brand-logo">Simplon R</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#modalLogin" class="modal-trigger"><i class="large material-icons">perm_identity</i></a></li>
-        </ul>
-    </div>
-</nav>
-<!--login modal-->
-<div id="modalLogin" class="modal">
-    <div class="modal-content">
-        <h4 class="center-align">Login</h4>
-        <div class="center-align">
-            <div class="divider"></div>
-            <form class="col s12">
-                <div class="row center-align">
-                    <div class="input-field col m10 offset-m1 blue-text">
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Username</label>
+<div ng-controller="AuthController as authCtrl">
+
+
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#home" class="brand-logo">Simplon R</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
+                </li>
+
+                <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter"
+                       ng-click="authCtrl.logout()" ng-show="authCtrl.isAuth"><i class="large material-icons">flight_land</i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--login modal-->
+    <div id="modalLogin" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Login</h4>
+            <div class="center-align">
+                <div class="divider"></div>
+                <form class="col s12">
+                    <p>{[{authCtrl.message}]}</p>
+                    <div class="row center-align">
+                        <div class="input-field col m10 offset-m1 blue-text">
+                            <input id="icon_prefix" type="text" class="validate" ng-model="authCtrl.credentials.username">
+                            <label for="icon_prefix">Username</label>
+                        </div>
+                        <div class="input-field col m10 offset-m1 blue-text ">
+                            <input id="icon_password" type="password" class="validate" ng-model="authCtrl.credentials.password">
+                            <label for="icon_password">Password</label>
+                        </div>
+
                     </div>
-                    <div class="input-field col m10 offset-m1 blue-text ">
-                        <input id="icon_password" type="password" class="validate">
-                        <label for="icon_password">Password</label>
-                    </div>
-                    <div class="input-field col m10 offset-m1 blue-text ">
-                        <input id="icon_password" type="password" class="validate">
-                        <label for="icon_password">Client_ID</label>
-                    </div>
-                    <div class="input-field col m10 offset-m1 blue-text ">
-                        <input id="icon_password" type="password" class="validate">
-                        <label for="icon_password">Secret</label>
-                    </div>
-                </div>
-            </form>
-            <div class="divider"></div>
-            <p>
-                <a href="#" class="btn btn-flat white modal-close">Cancel</a> &nbsp;
-                <a href="#" class="waves-effect waves-blue blue btn btn-flat modal-action modal-close">Login</a>
-            </p>
+                </form>
+                <div class="divider"></div>
+                <p>
+                    <a href="#" class="btn btn-flat white modal-close">Cancel</a> &nbsp;
+                    <a href="#" class="waves-effect waves-blue blue btn btn-flat modal-action modal-close" ng-click="authCtrl.auth()">Login</a>
+                </p>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
+    <!--<login-user></login-user>-->
+    <div class="container">
     <div class="row">
-        <div class="col s12">
+        <div class="col s12" ng-show="authCtrl.isAuth">
             <h4>List of applicants</h4>
             <section ng-init="apprenantCtrl.getAll()">
                 <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
@@ -67,7 +70,8 @@
                      ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+                            <img class="activator"
+                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
                         </div>
                         <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
@@ -212,9 +216,10 @@
             </div>
 
             <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red"
+                <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red tooltipped"
                    href="#modal-product-form"
-                   ng-click="apprenantCtrl.showCreateForm()"><i class="large material-icons">add</i></a>
+                   ng-click="apprenantCtrl.showCreateForm()" data-position="left" data-delay="50"
+                   data-tooltip="Ajouter un candidat"><i class="large material-icons">add</i></a>
             </div>
 
 
@@ -222,18 +227,23 @@
         <!-- end col s12 -->
     </div>
 </div>
-<!-- end row -->
+
 </div>
+<!-- end row -->
+
 <!-- end container -->
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
 <script type="text/javascript" src="web/js/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script type="text/javascript" src="web/js/moment.js"></script>
 <script type="text/javascript" src="web/js/app.js"></script>
+<script type="text/javascript" src="web/js/directives/loginUser/loginUser.js"></script>
+<script type="application/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+<script type="application/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
 <script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -244,6 +254,8 @@
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 100, // Creates a dropdown of 15 years to control year
         });
+
+
     });
 </script>
 </body>

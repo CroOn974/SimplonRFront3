@@ -1,11 +1,12 @@
 (function () {
-
+'use strict';
 
     var app = angular.module('simplonR', []).config(function ($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
     app.config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.defaults.headers.common = {};
         $httpProvider.defaults.headers.post = {};
         $httpProvider.defaults.headers.put = {};
@@ -13,6 +14,21 @@
         $httpProvider.defaults.headers.delete = {};
 
     });
+    
+    
+
+    /*app.config('RestangularProvider', function (RestangularProvider) {
+        RestangularProvider.setBaseUrl('http://localhost:8080/gestionApprenant2/intFormateur.html/api');
+        RestangularProvider.setRestangularFields({
+            id: '@id'
+        });
+        RestangularProvider.setSelfLinkAbsoluteUrl(false);
+        RestangularProvider.addResponseInterceptor(function (data, operation) {
+            function populateHref(data) {
+                if (data['@id'])
+            }
+        })
+    });*/
 
 
     app.controller('ApprenantsController', ['$http', function ($http) {
@@ -86,7 +102,8 @@
                 'status': "Candidat"
             }).success(function (data, status, header, config) {
 
-                Materialize.toast(data, 4000);
+                Materialize.toast("Le candidat "+ store.surname + "  " + store.firstname +" a bien été ajouté", 4000);
+
 
                 // close modal
                 $('#modal-product-form').closeModal();
@@ -188,7 +205,7 @@
 
             }).success(function (data, status, headers, config) {
 
-                Materialize.toast(data, 4000);
+                Materialize.toast("Le candidat a bien été  modifié", 4000);
 
                 // close modal
                 $('#modal-product-form').closeModal();
@@ -210,6 +227,73 @@
 
 
     }]);
+
+    
+    
+    
+    
+    
+    
+    
+    
+    app.controller('AuthController', ['$http', '$window', function ($http,$window) {
+        var ctrl = this;
+        this.auth = auth;
+        this.message = "";
+
+        if($window.sessionStorage.length == 0){
+                    this.isAuth = false;
+
+            
+        }
+        else{
+            this.isAuth = true; 
+        }
+       
+    
+
+        function auth(){
+
+        $http
+            .post('http://localhost:8000/login_check', "username="+ctrl.credentials.username+"&password="+ctrl.credentials.password,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+            .success(function (data, status, headers, config) {
+                $window.sessionStorage.token = data.token;
+                ctrl.message = 'Welcome';
+                Materialize.toast("Bienvenue"+ ctrl.credentials.username , 4000);
+
+                
+                
+                
+            })
+            .error(function (data, status, headers, config) {
+                // Erase the token if the user fails to log in
+                delete $window.sessionStorage.token;
+
+                // Handle login errors here
+                ctrl.message = 'Error: Invalid user or password';
+                Materialize.toast("Identifiants invalides" , 4000);
+            });
+        };
+    }]);
+
+    app.factory('authInterceptor', function ($q, $window) {
+        return {
+            request: function (config) {
+                config.headers = config.headers || {};
+                if ($window.sessionStorage.token) {
+                    config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+                }
+                return config;
+            },
+            response: function (response) {
+                if (response.status === 401) {
+                    // handle the case where the user is not authenticated
+                }
+                return response || $q.when(response);
+            }
+        };
+    });
+
 
 
 })();

@@ -1,0 +1,27 @@
+<div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <h4 class="center-align">Login</h4>
+        <div class="center-align">
+            <div class="divider"></div>
+            <form class="col s12">
+                <p>{[{login.message}]}</p>
+                <div class="row center-align">
+                    <div class="input-field col m10 offset-m1 blue-text">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="login.credentials.username">
+                        <label for="icon_prefix">Username</label>
+                    </div>
+                    <div class="input-field col m10 offset-m1 blue-text ">
+                        <input id="icon_password" type="password" class="validate" ng-model="login.credentials.password">
+                        <label for="icon_password">Password</label>
+                    </div>
+
+                </div>
+            </form>
+            <div class="divider"></div>
+            <p>
+                <a href="#" class="btn btn-flat white modal-close">Cancel</a> &nbsp;
+                <a href="#" class="waves-effect waves-blue blue btn btn-flat modal-action modal-close" ng-click="login.auth()">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
