@@ -6,6 +6,19 @@
         "C:/wamp64/www/gestionApprenant2/bower_components/restangular/test/restangularSpec.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/default-params.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-click.js",
-        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-dom.js"
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-dom.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-key.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/handle-swal-dom.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/injected-html.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/set-params.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dev/modules/utils.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dist/sweetalert-dev.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/dist/sweetalert.min.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/default-params.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-click.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-dom.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-key.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-swal-dom.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/injected-html.js"
     ]
 }

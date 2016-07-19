@@ -29,6 +29,8 @@
             }
         })
     });*/
+    
+    
 
 
     app.controller('ApprenantsController', ['$http', function ($http) {
@@ -239,6 +241,7 @@
     app.controller('AuthController', ['$http', '$window', function ($http,$window) {
         var ctrl = this;
         this.auth = auth;
+        this.logOut = logOut; 
         this.message = "";
 
         if($window.sessionStorage.length == 0){
@@ -247,7 +250,8 @@
             
         }
         else{
-            this.isAuth = true; 
+            this.isAuth = true;
+            
         }
        
     
@@ -259,7 +263,8 @@
             .success(function (data, status, headers, config) {
                 $window.sessionStorage.token = data.token;
                 ctrl.message = 'Welcome';
-                Materialize.toast("Bienvenue"+ ctrl.credentials.username , 4000);
+                
+                $window.location.reload(); 
 
                 
                 
@@ -273,6 +278,13 @@
                 ctrl.message = 'Error: Invalid user or password';
                 Materialize.toast("Identifiants invalides" , 4000);
             });
+        };
+        
+        
+        function logOut(){
+             delete $window.sessionStorage.token;
+             $window.location.reload(); 
+            
         };
     }]);
 
@@ -293,6 +305,129 @@
             }
         };
     });
+    
+    //---------------------------------------------------------------------------------------------------------------------------------
+
+app.controller('TrainerController', ['$http', function ($http) {
+
+  var store = this;
+
+  store.trainer = [];
+
+  //Fonctions controle modals
+
+  store.showCreateForm = function () {
+
+      // clear form
+
+      store.clearForm();
+
+      // change modal title
+
+      //$('#modal-trainer-title').text("Create New Apprenant");
+
+      store.createTrainer = 'Create new trainer';
+
+      // hide update trainer button
+
+      $('#btn-update-trainer').hide();
+
+      // show create trainer button
+
+      $('#btn-create-trainer').show();
+
+  };
+
+  store.clearForm = function () {
+
+      store.surname = "";
+
+      store.firstname = "";
+
+      store.adress = "";
+
+      store.phone = "";
+
+      store.skill = "";
+
+  };
+
+  //Fonctions CRUD
+
+  store.getAll = function () {
+
+      $http.get('http://127.0.0.1:8000/api/trainer/trainers.json').success(function (data) {
+
+          store.trainer = data;
+
+      });
+
+  };
+
+  //Create Trainer
+
+  
+
+  store.createTrainer = function () {
+
+      $http.post('http://127.0.0.1:8000/api/users/users.json', {
+
+          'username': store.username,
+
+          'email': store.email,
+
+          'password': store.password,
+
+          'trainer': {
+
+            'surname': store.surname,
+
+            'firstname': store.firstname,
+
+            'adress': store.adress,
+
+            'phone': store.phone,
+
+            'skills': store.skill
+
+          }
+
+      }).success(function (data, status, header, config) {
+
+          Materialize.toast(data, 4000);
+
+          // close modal
+
+          $('#modal-trainer-form').closeModal();
+
+          // clear modal content
+
+          store.clearForm();
+
+          // refresh the list
+
+          store.getAll();
+
+      });
+
+  };
+
+  function getSelectedIndexByEmail(email) {
+
+      for (var i = 0; i < store.trainer.length; i++)
+
+          if (store.trainer[i].email == email){
+
+            return store.id[i];
+
+          }
+
+  };
+
+}]);
+    
+    
+    
 
 
 

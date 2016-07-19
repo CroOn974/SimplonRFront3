@@ -9,255 +9,440 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css">
     <!-- include material design icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="web/css/main.css">
     <!--    <link rel="stylesheet" href="web/css/style.css">-->
 </head>
+
 <body id="home" ng-controller="ApprenantsController as apprenantCtrl">
-<div ng-controller="AuthController as authCtrl">
+    <div ng-controller="AuthController as authCtrl">
 
 
-    <nav>
-        <div class="nav-wrapper container">
-            <a href="#home" class="brand-logo">Simplon R</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
-                </li>
+        <nav>
+            <div class="nav-wrapper container">
+                <a href="#home" class="brand-logo">Simplon R</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
+                    </li>
+                    <li><a class="modal-trigger tooltipped" href="#modal-trainer-form" ng-click="trainerCtrl.showCreateForm()" data-position="bottom" data-delay="50" data-tooltip="Ajouter un formateur" ng-show="authCtrl.isAuth"><i class="large material-icons">add</i></a>
+                    </li>
 
-                <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter"
-                       ng-click="authCtrl.logout()" ng-show="authCtrl.isAuth"><i class="large material-icons">flight_land</i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!--login modal-->
-    <div id="modalLogin" class="modal">
-        <div class="modal-content">
-            <h4 class="center-align">Login</h4>
-            <div class="center-align">
-                <div class="divider"></div>
-                <form class="col s12">
-                    <p>{[{authCtrl.message}]}</p>
-                    <div class="row center-align">
-                        <div class="input-field col m10 offset-m1 blue-text">
-                            <input id="icon_prefix" type="text" class="validate" ng-model="authCtrl.credentials.username">
-                            <label for="icon_prefix">Username</label>
+                    <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter" ng-click="authCtrl.logOut()" ng-show="authCtrl.isAuth"><i class="large material-icons">flight_land</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--login modal-->
+        <div id="modalLogin" class="modal">
+            <div class="modal-content">
+                <h4 class="center-align">Login</h4>
+                <div class="center-align">
+                    <div class="divider"></div>
+                    <form class="col s12">
+                        <p>{[{authCtrl.message}]}</p>
+                        <div class="row center-align">
+                            <div class="input-field col m10 offset-m1 blue-text">
+                                <input id="icon_prefix" type="text" class="validate" ng-model="authCtrl.credentials.username">
+                                <label for="icon_prefix">Username</label>
+                            </div>
+                            <div class="input-field col m10 offset-m1 blue-text ">
+                                <input id="icon_password" type="password" class="validate" ng-model="authCtrl.credentials.password">
+                                <label for="icon_password">Password</label>
+                            </div>
+
                         </div>
-                        <div class="input-field col m10 offset-m1 blue-text ">
-                            <input id="icon_password" type="password" class="validate" ng-model="authCtrl.credentials.password">
-                            <label for="icon_password">Password</label>
-                        </div>
-
-                    </div>
-                </form>
-                <div class="divider"></div>
-                <p>
-                    <a href="#" class="btn btn-flat white modal-close">Cancel</a> &nbsp;
-                    <a href="#" class="waves-effect waves-blue blue btn btn-flat modal-action modal-close" ng-click="authCtrl.auth()">Login</a>
-                </p>
+                    </form>
+                    <div class="divider"></div>
+                    <p>
+                        <a href="#" class="btn btn-flat white modal-close">Cancel</a> &nbsp;
+                        <a href="#" class="waves-effect waves-blue blue btn btn-flat modal-action modal-close" ng-click="authCtrl.auth()">Login</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <!--<login-user></login-user>-->
-    <div class="container">
+
+        <div class="container center" ng-show="!authCtrl.isAuth">
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="card-panel cyan">
+                        <span class="white-text">Bienvenue sur SimplonR, l'application web qui permet aux formateurs et directeurs de suivre intégralement les apprenants de Simplon tout au long de leur parcours, depuis leur candidature, jusqu'à leur insertion. 
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti vitae qui quasi ipsa nulla aspernatur rem. Adipisci suscipit ut atque dignissimos, obcaecati, quo, modi unde eligendi qui non nam, praesentium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque esse odio quibusdam sapiente corporis, ab facilis omnis! Asperiores ex ea reiciendis vero minus in quis! Nemo perspiciatis voluptate eligendi, magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem et ab non, aliquam voluptatum rerum reprehenderit. Aut quo, non tempore eum, at nobis consequatur sint vel explicabo ipsum illo dolor.
+                
+          </span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!--<login-user></login-user>-->
+        <div  ng-controller="TrainerController as trainerCtrl" class="container" ng-show="authCtrl.isAuth">
+
     <div class="row">
-        <div class="col s12" ng-show="authCtrl.isAuth">
-            <h4>List of applicants</h4>
-            <section ng-init="apprenantCtrl.getAll()">
+
+        <div class="col s12">
+
+            <h4>List of trainer</h4>
+
+            <section ng-init="trainerCtrl.getAll()">
+
                 <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
+
                 <div class="col s12 m6 l4"
-                     ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
+
+                     ng-repeat="trainer in trainerCtrl.trainer | filter:searchText">
+
                     <div class="card">
+
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator"
-                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+
+                            <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+
                         </div>
+
                         <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
+
+                        <span class="card-title activator grey-text text-darken-4">{[{trainer.firstname}]} {[{trainer.surname | uppercase}]}<i
+
                                 class="material-icons right">more_vert</i></span>
-                            <p><a href="#">{[{ apprenant.status }]}</a></p>
+
                         </div>
+
                         <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
-                                class="material-icons right">close</i></span>
-                            <p><strong>Birth date :</strong> {[{ apprenant.birth_date | date }]}</p>
-                            <p><strong>Birth place :</strong> {[{ apprenant.birth_place }]}</p>
-                            <p><strong>Birth country :</strong> {[{ apprenant.birth_country }]}</p>
-                            <p><strong>Adress :</strong> {[{ apprenant.adress }]}</p>
-                            <p><strong>Nationality :</strong> {[{ apprenant.nationality }]}</p>
-                            <p><strong>Mail :</strong> {[{ apprenant.email }]}</p>
-                            <p><strong>Phone number :</strong> {[{ apprenant.phone }]}</p>
-                            <p><strong>English level :</strong> {[{ apprenant.english_level }]}</p>
-                            <p><strong>Codecademy : </strong>{[{ apprenant.codecademy_profile }]}</p>
-                            <p><strong>Last diploma : </strong>{[{ apprenant.last_diploma }]}</p>
-                            <p><strong>Pole emploi : </strong>{[{ apprenant.pole_emploi_number }]}</p>
 
-                            <a ng-click="apprenantCtrl.selectEdit(apprenant.id)"
+                        <span class="card-title grey-text text-darken-4">{[{trainer.firstname}]} {[{trainer.surname | uppercase}]}<i
+
+                                class="material-icons right">close</i></span>
+
+                            <p><strong>Adress :</strong> {[{ trainer.adress }]}</p>
+
+                            <p><strong>Phone :</strong> {[{ trainer.phone }]}</p>
+
+                            <p><strong>Skills :</strong> {[{ trainer.skills }]}</p>
+
+                            <a ng-click="trainerCtrl.selectEdit(trainer.id)"
+
                                class="waves-effect waves-light btn margin-bottom-1em"><i
+
                                     class="material-icons left">edit</i>Edit</a>
+
                         </div>
 
-                        <a ng-click="apprenantCtrl.deleteCandidat(apprenant.id)"
+                        <a ng-click="trainerCtrl.deleteTrainer(trainer.id)"
+
                            class="waves-effect waves-light btn margin-bottom-1em"><i
+
                                 class="material-icons left">delete</i>Delete</a>
+
                     </div>
 
-
                 </div>
+
             </section>
 
+            <!-- Modal Create Trainer -->
 
-            <!-- Modal Create Apprenant -->
-            <div id="modal-product-form" class="modal">
+            <div id="modal-trainer-form" class="modal">
+
                 <div class="modal-content">
-                    <h4 id="modal-product-title">{[{ apprenantCtrl.createApplicant }]}</h4>
+
+                    <h4 id="modal-trainer-title">{[{ trainerCtrl.createTrainer }]}</h4>
+
                     <div class="row">
+
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.surname" type="text" class="validate" id="form-surname"
+
+                            <input ng-model="trainerCtrl.surname" type="text" class="validate" id="form-surname"
+
                                    placeholder="Type your lastname..."/>
-                            <label for="apprenantCtrl.surname">Lastname</label>
+
+                            <label for="trainerCtrl.surname">Lastname</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.firstname" type="text" class="validate"
+
+                            <input ng-model="trainerCtrl.firstname" type="text" class="validate"
+
                                    placeholder="Type your firstname...">
-                            <label for="apprenantCtrl.firstname">Firstname</label>
+
+                            <label for="trainerCtrl.firstname">Firstname</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.birth_date" type="date" class="" id="form-birthdate"
-                                   style="margin-top: 25px;">
-                            <label for="apprenantCtrl.birth_date">Birth Date</label>
-                        </div>
 
+                            <input ng-model="trainerCtrl.username" type="text" class="validate"
 
-                        <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.birth_place" type="text" class="validate"
-                                   id="form-birthplace"
-                                   placeholder="Type your birth place..."/>
-                            <label for="apprenantCtrl.birth_place">Birth Place</label>
+                                   id="form-username"
+
+                                   placeholder="Type your username..."/>
+
+                            <label for="trianerCtrl.username">Username</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.birth_country" type="text" class="validate"
-                                   id="form-birthcountry" placeholder="Type your birth country..."/>
-                            <label for="apprenantCtrl.birth_country">Birth Country</label>
+
+                            <input ng-model="trainerCtrl.password" type="text" class="validate"
+
+                                   id="form-password" placeholder="Type your password..."/>
+
+                            <label for="trainerCtrl.password">Password</label>
+
                         </div>
 
-
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.adress" type="text" class="validate" id="form-adress"
+
+                            <input ng-model="trainerCtrl.adress" type="text" class="validate" id="form-adress"
+
                                    placeholder="Type your current adress..."/>
-                            <label for="apprenantCtrl.adress">Adress</label>
+
+                            <label for="trainerCtrl.adress">Adress</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.nationality" type="text" class="validate"
-                                   id="form-nationality"
-                                   placeholder="Type your nationality..."/>
-                            <label for="apprenantCtrl.nationality">Nationality</label>
-                        </div>
 
-                        <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.email" type="text" class="validate" id="form-email"
+                            <input ng-model="trainerCtrl.email" type="text" class="validate" id="form-email"
+
                                    placeholder="Type your email..."/>
-                            <label for="apprenantCtrl.email">Mail</label>
+
+                            <label for="trainerCtrl.email">Mail</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.phone" type="text" class="validate" id="form-phone"
+
+                            <input ng-model="trainerCtrl.phone" type="text" class="validate" id="form-phone"
+
                                    placeholder="Type your phone number..."/>
-                            <label for="apprenantCtrl.phone">Phone</label>
+
+                            <label for="trainerCtrl.phone">Phone</label>
+
                         </div>
 
                         <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.codecademy_profile" type="text" class="validate"
-                                   id="form-codecademyprofile"
-                                   placeholder="Paste here your codecademy profile link..."/>
-                            <label for="apprenantCtrl.codecademy_profile">Codecademy</label>
-                        </div>
 
-                        <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.english_level" type="text" class="validate"
+                            <input ng-model="trainerCtrl.skill" type="text" class="validate"
+
                                    id="form-englishlevel" placeholder="Type your english level..."/>
-                            <label for="apprenantCtrl.english_level">English level</label>
-                        </div>
 
-                        <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.last_diploma" type="text" class="validate"
-                                   id="form-lastdiploma"
-                                   placeholder="Type your last diploma..."/>
-                            <label for="apprenantCtrl.last_diploma">Last diploma</label>
-                        </div>
+                            <label for="trainerCtrl.skill">Skill</label>
 
-                        <div class="input-field col s12">
-                            <input ng-model="apprenantCtrl.pole_emploi_number" type="text" class="validate"
-                                   id="form-poleemploinumber" placeholder="Type your pole emploi number..."/>
-                            <label for="apprenantCtrl.pole_emploi_number">Pole Emploi</label>
                         </div>
-
 
                         <!-- Boutons d'édition -->
+
                         <div class="input-field col s12">
-                            <a id="btn-create-product" class="waves-effect waves-light btn margin-bottom-1em"
-                               ng-click="apprenantCtrl.createCandidat()"><i
+
+                            <a id="btn-create-trainer" class="waves-effect waves-light btn margin-bottom-1em"
+
+                               ng-click="trainerCtrl.createTrainer()"><i
+
                                     class="material-icons left">add</i>Create</a>
 
-                            <a id="btn-update-product" class="waves-effect waves-light btn margin-bottom-1em"
-                               ng-click="apprenantCtrl.updateApprenant(apprenant.id)"><i
+                            <a id="btn-update-trainer" class="waves-effect waves-light btn margin-bottom-1em"
+
+                               ng-click="trainerCtrl.updateTrainer(trainer.id)"><i
+
                                     class="material-icons left">edit</i>Save Changes</a>
 
                             <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+
                                     class="material-icons left">close</i>Close</a>
+
                         </div>
+
                     </div>
+
                 </div>
-            </div>
 
-            <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red tooltipped"
-                   href="#modal-product-form"
-                   ng-click="apprenantCtrl.showCreateForm()" data-position="left" data-delay="50"
-                   data-tooltip="Ajouter un candidat"><i class="large material-icons">add</i></a>
             </div>
-
 
         </div>
-        <!-- end col s12 -->
+
     </div>
-</div>
 
 </div>
-<!-- end row -->
 
-<!-- end container -->
+<!-- Fin list Fomateur-->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
-<script type="text/javascript" src="web/js/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script type="text/javascript" src="web/js/moment.js"></script>
-<script type="text/javascript" src="web/js/app.js"></script>
-<script type="text/javascript" src="web/js/directives/loginUser/loginUser.js"></script>
-<script type="application/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
-<script type="application/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
-<script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        // initialize modal
-        $('.modal-trigger').leanModal();
+        <div class="container">
+            <div class="row">
+                <div class="col s12" ng-show="authCtrl.isAuth">
+                    <h4>List of applicants</h4>
+                    <section ng-init="apprenantCtrl.getAll()">
+                        <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
+                        <div class="col s12 m6 l4" ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
+                                class="material-icons right">more_vert</i></span>
+                                    <p><a href="#">{[{ apprenant.status }]}</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
+                                class="material-icons right">close</i></span>
+                                    <p><strong>Birth date :</strong> {[{ apprenant.birth_date | date }]}</p>
+                                    <p><strong>Birth place :</strong> {[{ apprenant.birth_place }]}</p>
+                                    <p><strong>Birth country :</strong> {[{ apprenant.birth_country }]}</p>
+                                    <p><strong>Adress :</strong> {[{ apprenant.adress }]}</p>
+                                    <p><strong>Nationality :</strong> {[{ apprenant.nationality }]}</p>
+                                    <p><strong>Mail :</strong> {[{ apprenant.email }]}</p>
+                                    <p><strong>Phone number :</strong> {[{ apprenant.phone }]}</p>
+                                    <p><strong>English level :</strong> {[{ apprenant.english_level }]}</p>
+                                    <p><strong>Codecademy : </strong>{[{ apprenant.codecademy_profile }]}</p>
+                                    <p><strong>Last diploma : </strong>{[{ apprenant.last_diploma }]}</p>
+                                    <p><strong>Pole emploi : </strong>{[{ apprenant.pole_emploi_number }]}</p>
 
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 100, // Creates a dropdown of 15 years to control year
+                                    <a ng-click="apprenantCtrl.selectEdit(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                    class="material-icons left">edit</i>Edit</a>
+                                </div>
+
+                                <a ng-click="apprenantCtrl.deleteCandidat(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                class="material-icons left">delete</i>Delete</a>
+                            </div>
+
+
+                        </div>
+                    </section>
+
+
+                    <!-- Modal Create Apprenant -->
+                    <div id="modal-product-form" class="modal">
+                        <div class="modal-content">
+                            <h4 id="modal-product-title">{[{ apprenantCtrl.createApplicant }]}</h4>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.surname" type="text" class="validate" id="form-surname" placeholder="Type your lastname..." />
+                                    <label for="apprenantCtrl.surname">Lastname</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.firstname" type="text" class="validate" placeholder="Type your firstname...">
+                                    <label for="apprenantCtrl.firstname">Firstname</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.birth_date" type="date" class="" id="form-birthdate" style="margin-top: 25px;">
+                                    <label for="apprenantCtrl.birth_date">Birth Date</label>
+                                </div>
+
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.birth_place" type="text" class="validate" id="form-birthplace" placeholder="Type your birth place..." />
+                                    <label for="apprenantCtrl.birth_place">Birth Place</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.birth_country" type="text" class="validate" id="form-birthcountry" placeholder="Type your birth country..." />
+                                    <label for="apprenantCtrl.birth_country">Birth Country</label>
+                                </div>
+
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.adress" type="text" class="validate" id="form-adress" placeholder="Type your current adress..." />
+                                    <label for="apprenantCtrl.adress">Adress</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.nationality" type="text" class="validate" id="form-nationality" placeholder="Type your nationality..." />
+                                    <label for="apprenantCtrl.nationality">Nationality</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.email" type="text" class="validate" id="form-email" placeholder="Type your email..." />
+                                    <label for="apprenantCtrl.email">Mail</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.phone" type="text" class="validate" id="form-phone" placeholder="Type your phone number..." />
+                                    <label for="apprenantCtrl.phone">Phone</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.codecademy_profile" type="text" class="validate" id="form-codecademyprofile" placeholder="Paste here your codecademy profile link..." />
+                                    <label for="apprenantCtrl.codecademy_profile">Codecademy</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.english_level" type="text" class="validate" id="form-englishlevel" placeholder="Type your english level..." />
+                                    <label for="apprenantCtrl.english_level">English level</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.last_diploma" type="text" class="validate" id="form-lastdiploma" placeholder="Type your last diploma..." />
+                                    <label for="apprenantCtrl.last_diploma">Last diploma</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input ng-model="apprenantCtrl.pole_emploi_number" type="text" class="validate" id="form-poleemploinumber" placeholder="Type your pole emploi number..." />
+                                    <label for="apprenantCtrl.pole_emploi_number">Pole Emploi</label>
+                                </div>
+
+
+                                <!-- Boutons d'édition -->
+                                <div class="input-field col s12">
+                                    <a id="btn-create-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="apprenantCtrl.createCandidat()"><i
+                                    class="material-icons left">add</i>Create</a>
+
+                                    <a id="btn-update-product" class="waves-effect waves-light btn margin-bottom-1em" ng-click="apprenantCtrl.updateApprenant(apprenant.id)"><i
+                                    class="material-icons left">edit</i>Save Changes</a>
+
+                                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+                                    class="material-icons left">close</i>Close</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fixed-action-btn" style="bottom:45px; right:24px;">
+                        <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red tooltipped" href="#modal-product-form" ng-click="apprenantCtrl.showCreateForm()" data-position="left" data-delay="50" data-tooltip="Ajouter un candidat"><i class="large material-icons">add</i></a>
+                    </div>
+
+
+                </div>
+                <!-- end col s12 -->
+            </div>
+        </div>
+
+    </div>
+    <!-- end row -->
+
+    <!-- end container -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
+    <script type="text/javascript" src="web/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="web/js/moment.js"></script>
+    <script type="text/javascript" src="web/js/app.js"></script>
+    <script type="text/javascript" src="web/js/directives/loginUser/loginUser.js"></script>
+    <script type="application/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script type="application/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // initialize modal
+            $('.modal-trigger').leanModal();
+
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 100, // Creates a dropdown of 15 years to control year
+            });
+
+
         });
-
-
-    });
-</script>
+    </script>
 </body>
 
 </html>
