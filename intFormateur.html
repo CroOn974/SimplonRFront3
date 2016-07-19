@@ -15,9 +15,8 @@
 </head>
 
 <body id="home" ng-controller="ApprenantsController as apprenantCtrl">
-   <div ng-controller="TrainerController as trainerCtrl">
-       
-   
+
+
     <div ng-controller="AuthController as authCtrl">
 
 
@@ -28,7 +27,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
                     </li>
-                    <li><a class="modal-trigger tooltipped" href="#modal-trainer-form" ng-click="trainerCtrl.showCreateForm()" data-position="bottom" data-delay="50" data-tooltip="Ajouter un formateur" ng-show="authCtrl.isAuth"><i class="large material-icons">add</i></a>
+                    <li><a class="modal-trigger tooltipped" href="#modal-admin-form" ng-click="adminCtrl.showCreateForm()" data-position="bottom" data-delay="50" data-tooltip="Ajouter un formateur" ng-show="authCtrl.isAuth"><i class="large material-icons">add</i></a>
                     </li>
 
                     <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter" ng-click="authCtrl.logOut()" ng-show="authCtrl.isAuth"><i class="large material-icons">flight_land</i></a>
@@ -69,9 +68,9 @@
             <div class="row">
                 <div class="col s8 offset-s2">
                     <div class="card-panel cyan">
-                        <span class="white-text">Bienvenue sur SimplonR, l'application web qui permet aux formateurs et directeurs de suivre intégralement les apprenants de Simplon tout au long de leur parcours, depuis leur candidature, jusqu'à leur insertion. 
+                        <span class="white-text">Bienvenue sur SimplonR, l'application web qui permet aux formateurs et directeurs de suivre intégralement les apprenants de Simplon tout au long de leur parcours, depuis leur candidature, jusqu'à leur insertion.
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti vitae qui quasi ipsa nulla aspernatur rem. Adipisci suscipit ut atque dignissimos, obcaecati, quo, modi unde eligendi qui non nam, praesentium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque esse odio quibusdam sapiente corporis, ab facilis omnis! Asperiores ex ea reiciendis vero minus in quis! Nemo perspiciatis voluptate eligendi, magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem et ab non, aliquam voluptatum rerum reprehenderit. Aut quo, non tempore eum, at nobis consequatur sint vel explicabo ipsum illo dolor.
-                
+
           </span>
                     </div>
                 </div>
@@ -81,6 +80,8 @@
         </div>
 
         <!--<login-user></login-user>-->
+        <div ng-controller="TrainerController as trainerCtrl">
+
         <div  class="container" ng-show="authCtrl.isAuth">
 
     <div class="row">
@@ -273,6 +274,115 @@
 
 <!-- Fin list Fomateur-->
 
+<!-- Modal Create Admin -->
+
+<div id="modal-admin-form" ng-controller="AdminController as adminCtrl" class="modal">
+
+    <div class="modal-content">
+
+        <h4 id="modal-trainer-title">{[{ adminCtrl.createAdmin }]}</h4>
+
+        <div class="row">
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.surname" type="text" class="validate" id="form-surname"
+
+                       placeholder="Type your lastname..."/>
+
+                <label for="adminCtrl.surname">Lastname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.firstname" type="text" class="validate"
+
+                       placeholder="Type your firstname...">
+
+                <label for="adminCtrl.firstname">Firstname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.username" type="text" class="validate"
+
+                       id="form-username"
+
+                       placeholder="Type your username..."/>
+
+                <label for="adminCtrl.username">Username</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.password" type="text" class="validate"
+
+                       id="form-password" placeholder="Type your password..."/>
+
+                <label for="adminCtrl.password">Password</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.adress" type="text" class="validate" id="form-adress"
+
+                       placeholder="Type your current adress..."/>
+
+                <label for="adminCtrl.adress">Adress</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.email" type="text" class="validate" id="form-email"
+
+                       placeholder="Type your email..."/>
+
+                <label for="adminCtrl.email">Mail</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.phone" type="text" class="validate" id="form-phone"
+
+                       placeholder="Type your phone number..."/>
+
+                <label for="adminCtrl.phone">Phone</label>
+
+            </div>
+
+            <!-- Boutons d'édition -->
+
+            <div class="input-field col s12">
+
+                <a id="btn-create-admin" class="waves-effect waves-light btn margin-bottom-1em"
+
+                   ng-click="adminCtrl.createAdmin()"><i
+
+                        class="material-icons left">add</i>Create</a>
+
+                <a id="btn-update-admin" class="waves-effect waves-light btn margin-bottom-1em"
+
+                   ng-click="adminCtrl.updateAdmin(admin.id)"><i
+
+                        class="material-icons left">edit</i>Save Changes</a>
+
+                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+
+                        class="material-icons left">close</i>Close</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
         <div class="container">
             <div class="row">
