@@ -19,6 +19,7 @@
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-dom.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-key.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/handle-swal-dom.js",
-        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/injected-html.js"
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/injected-html.js",
+        "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/set-params.js"
     ]
 }

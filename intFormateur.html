@@ -15,6 +15,9 @@
 </head>
 
 <body id="home" ng-controller="ApprenantsController as apprenantCtrl">
+   <div ng-controller="TrainerController as trainerCtrl">
+       
+   
     <div ng-controller="AuthController as authCtrl">
 
 
@@ -78,7 +81,7 @@
         </div>
 
         <!--<login-user></login-user>-->
-        <div  ng-controller="TrainerController as trainerCtrl" class="container" ng-show="authCtrl.isAuth">
+        <div  class="container" ng-show="authCtrl.isAuth">
 
     <div class="row">
 
@@ -413,6 +416,7 @@
             </div>
         </div>
 
+    </div>
     </div>
     <!-- end row -->
 
