@@ -76,7 +76,7 @@
 
         store.getAll = function () {
 
-            $http.get('http://127.0.0.1:8000/api/applicant/applicants.json').success(function (data) {
+            $http.get('http://127.0.0.1:8000/api/applicants.json').success(function (data) {
 
                 store.products = data;
 
@@ -86,7 +86,7 @@
 
         store.createCandidat = function () {
 
-            $http.post('http://127.0.0.1:8000/api/applicants/applicants.json', {
+            $http.post('http://127.0.0.1:8000/api/applicants.json', {
                 'surname': store.surname,
                 'firstname': store.firstname,
                 'creation_date': moment().format(),
@@ -132,7 +132,7 @@
                 closeOnCancel: false
             }, function (isConfirm) {
                 if (isConfirm) {
-                    $http.delete('http://127.0.0.1:8000/api/applicants/' + id + '/applicant.json', {
+                    $http.delete('http://127.0.0.1:8000/api/applicants/' + id + '.json', {
                         'id': id
                     }).success(function (data, status, headers, config) {
                         // refresh the list
@@ -156,7 +156,8 @@
             // show create product button
             $('#btn-create-product').hide();
             var index = getSelectedIndex(id);
-            $http.get('http://127.0.0.1:8000/api/applicant/applicants.json', {
+
+            $http.get('http://127.0.0.1:8000/api/applicants.json', {
                 'id': id
             }).success(function (data, status, headers, config) {        // put the values in form
 
@@ -188,7 +189,7 @@
         store.updateApprenant = function () {
 
 
-            $http.put('http://127.0.0.1:8000/api/applicants/' + store.id + '/applicant.json', {
+            $http.put('http://127.0.0.1:8000/api/applicants/' + store.id + '.json', {
                 'id': store.id,
                 'surname': store.surname,
                 'firstname': store.firstname,
@@ -307,12 +308,13 @@
     });
 
 //---------------------------------------------------------------------------------------------------------------------------------
+//TRAINER controller
 
 app.controller('TrainerController', ['$http', function ($http) {
 
   var store = this;
 
-  store.trainer = [];
+  store.users = [];
 
   //Fonctions controle modals
 
@@ -356,13 +358,15 @@ app.controller('TrainerController', ['$http', function ($http) {
 
   store.getAll = function () {
 
-      $http.get('http://127.0.0.1:8000/api/trainer/trainers.json').success(function (data) {
+      $http.get('http://127.0.0.1:8000/api/users.json').success(function (data) {
 
-          store.trainer = data;
+          store.users = data;
 
       });
 
   };
+
+
 
   //Create Trainer
 
@@ -370,7 +374,7 @@ app.controller('TrainerController', ['$http', function ($http) {
 
   store.createTrainer = function () {
 
-      $http.post('http://127.0.0.1:8000/api/users/users.json', {
+      $http.post('http://127.0.0.1:8000/api/users.json', {
 
           'username': store.username,
 
@@ -412,17 +416,65 @@ app.controller('TrainerController', ['$http', function ($http) {
 
   };
 
-  function getSelectedIndexByEmail(email) {
 
-      for (var i = 0; i < store.trainer.length; i++)
+  function getTrainerupdate(id) {
 
-          if (store.trainer[i].email == email){
+  for (var i = 0; i < store.users.length; i++)
 
-            return store.id[i];
+      if (store.users[i].id == id){
 
-          }
+        return store.id[i];
 
-  };
+      }
+
+ };
+
+ store.selectTrainer = function (id) {
+
+    // change modal title
+    //$('#modal-product-title').text("Edit applicant");
+    store.createApplicant = 'Edit Applicant';
+
+    // show udpate product button
+    $('#btn-update-trainer').show();
+
+    // show create product button
+    $('#btn-create-trainer').hide();
+
+    var trainer = getTrainerupdate(id);
+    $http.get('http://127.0.0.1:8000/api/user.json', {
+        'id': id
+    }).success(function (data, status, headers, config) {        // put the values in form
+
+      /*store.id = data[trainer]["id"];
+      store.username = data[trainer]["username"];
+      store.email = data[trainer]["email"];
+      store.password = data[trainer]["password"];
+      store.surname = data[trainer]["trainer"]["surname"];
+      store.firstname = data[trainer]["trainer"]["firstname"];
+      store.adress = data[trainer]["trainer"]["adress"];
+      store.phone = data[trainer]["trainer"]["phone"];
+      store.skills = data[trainer]["trainer"]["store.skills"];*/
+
+        $('#modal-trainer-form').openModal();
+
+    }).error(function (data, status, headers, config) {
+        Materialize.toast('Unable to retrieve record.', 4000);
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }]);
 
@@ -476,7 +528,7 @@ app.controller('AdminController', ['$http', function ($http) {
 
   store.createAdmin = function () {
 
-      $http.post('http://127.0.0.1:8000/api/users/users.json', {
+      $http.post('http://127.0.0.1:8000/api/users.json', {
 
           'username': store.username,
 

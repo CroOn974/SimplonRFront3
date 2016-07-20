@@ -103,7 +103,7 @@ Comme cela, Simplon Réunion aura a la possibilité de la suivre tout au long de
 Les formateurs et dirigeants de Simplon Réunion peuvent lister toutes les candidatures/apprenants, les modifier ou les supprimer.
 
 L'application pourra permettre de lier une note pour chaque apprenant.
-                
+
 
           </span>
                     </div>
@@ -129,9 +129,9 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
                             <input type="text" ng-model="searchText" class="" placeholder="Find trainer">
 
-                            <div class="col s12 m6 l4" ng-repeat="trainer in trainerCtrl.trainer | filter:searchText">
+                            <div class="col s12 m6 l4" ng-repeat="user in trainerCtrl.users | filter:searchText">
 
-                                <div class="card">
+                                <div class="card"  ng-hide="!user.trainer">
 
                                     <div class="card-image waves-effect waves-block waves-light">
 
@@ -141,7 +141,7 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
                                     <div class="card-content">
 
-                                        <span class="card-title activator grey-text text-darken-4">{[{trainer.firstname}]} {[{trainer.surname | uppercase}]}<i
+                                        <span class="card-title activator grey-text text-darken-4">{[{user.trainer.firstname}]} {[{user.trainer.surname | uppercase}]}<i
 
                                 class="material-icons right">more_vert</i></span>
 
@@ -149,26 +149,24 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
                                     <div class="card-reveal">
 
-                                        <span class="card-title grey-text text-darken-4">{[{trainer.firstname}]} {[{trainer.surname | uppercase}]}<i
+                                        <span class="card-title grey-text text-darken-4">{[{user.trainer.firstname}]} {[{user.trainer.surname | uppercase}]}<i
 
                                 class="material-icons right">close</i></span>
 
-                                        <p><strong>Adress :</strong> {[{ trainer.adress }]}</p>
+                                        <p><strong>Adress :</strong> {[{ user.trainer.adress }]}</p>
 
-                                        <p><strong>Phone :</strong> {[{ trainer.phone }]}</p>
+                                        <p><strong>Phone :</strong> {[{ user.trainer.phone }]}</p>
 
-                                        <p><strong>Skills :</strong> {[{ trainer.skills }]}</p>
+                                        <p><strong>Skills :</strong> {[{ user.trainer.skills }]}</p>
 
-                                        <a ng-click="trainerCtrl.selectEdit(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
-
-                                    class="material-icons left">edit</i>Edit</a>
-
-                                    </div>
+                                        <a ng-click="trainerCtrl.selectTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                           class="material-icons left">edit</i>Edit</a>
+                                </div>
 
                                     <a ng-click="trainerCtrl.deleteTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
 
                                 class="material-icons left">delete</i>Delete</a>
-
+                                        </div>
                                 </div>
 
                             </div>
@@ -283,7 +281,7 @@ L'application pourra permettre de lier une note pour chaque apprenant.
             <!-- Fin list Fomateur-->
 
 
-   
+
 
 <!-- Modal Create Admin -->
 
@@ -291,7 +289,7 @@ L'application pourra permettre de lier une note pour chaque apprenant.
 
     <div class="modal-content">
 
-        <h4 id="modal-trainer-title">{[{ adminCtrl.createAdmin }]}</h4>
+        <h4 id="modal-admin-title">{[{ adminCtrl.createAdmin }]}</h4>
 
         <div class="row">
 
