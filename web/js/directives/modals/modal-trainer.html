@@ -1,0 +1,95 @@
+<div id="modal-trainer-form" class="modal">
+
+    <div class="modal-content">
+
+        <h4 id="modal-trainer-title">{[{ trainerCtrl.createTrainer }]}</h4>
+
+        <div class="row">
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.surname" type="text" class="validate" id="form-surname" placeholder="" />
+
+                <label for="trainerCtrl.surname">Lastname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.firstname" type="text" class="validate" placeholder="">
+
+                <label for="trainerCtrl.firstname">Firstname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.username" type="text" class="validate" id="form-username" placeholder="" />
+
+                <label for="trianerCtrl.username">Username</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.password" type="text" class="validate" id="form-password" placeholder="" />
+
+                <label for="trainerCtrl.password">Password</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.adress" type="text" class="validate" id="form-adress" placeholder="" />
+
+                <label for="trainerCtrl.adress">Adress</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.email" type="text" class="validate" id="form-email" placeholder="" />
+
+                <label for="trainerCtrl.email">Mail</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.phone" type="text" class="validate" id="form-phone" placeholder="" />
+
+                <label for="trainerCtrl.phone">Phone</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="trainerCtrl.skill" type="text" class="validate" id="form-englishlevel" placeholder="" />
+
+                <label for="trainerCtrl.skill">Skill</label>
+
+            </div>
+
+            <!-- Boutons d'édition -->
+
+            <div class="input-field col s12">
+
+                <a id="btn-create-trainer" class="waves-effect waves-light btn margin-bottom-1em" ng-click="trainerCtrl.createTrainer()"><i
+
+                                    class="material-icons left">add</i>Create</a>
+
+                <a id="btn-update-trainer" class="waves-effect waves-light btn margin-bottom-1em" ng-click="trainerCtrl.updateTrainer(trainer.id)"><i
+
+                                    class="material-icons left">edit</i>Save Changes</a>
+
+                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+
+                                    class="material-icons left">close</i>Close</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

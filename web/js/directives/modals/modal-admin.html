@@ -1,0 +1,88 @@
+<!-- Modal Create Admin -->
+
+
+<div class="modal" id="modal-admin-form">
+    <div class="modal-content">
+
+        <h4 id="modal-admin-title">{[{ adminCtrl.createAdmin }]}</h4>
+
+        <div class="row">
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.surname" type="text" class="validate" id="form-surname" placeholder="" />
+
+                <label for="adminCtrl.surname">Lastname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.firstname" type="text" class="validate" placeholder="">
+
+                <label for="adminCtrl.firstname">Firstname</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.username" type="text" class="validate" id="form-username" placeholder="" />
+
+                <label for="adminCtrl.username">Username</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.password" type="text" class="validate" id="form-password" placeholder="" />
+
+                <label for="adminCtrl.password">Password</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.adress" type="text" class="validate" id="form-adress" placeholder="" />
+
+                <label for="adminCtrl.adress">Adress</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.email" type="text" class="validate" id="form-email" placeholder="" />
+
+                <label for="adminCtrl.email">Mail</label>
+
+            </div>
+
+            <div class="input-field col s12">
+
+                <input ng-model="adminCtrl.phone" type="text" class="validate" id="form-phone" placeholder="" />
+
+                <label for="adminCtrl.phone">Phone</label>
+
+            </div>
+
+            <!-- Boutons d'édition -->
+
+            <div class="input-field col s12">
+
+                <a id="btn-create-admin" class="waves-effect waves-light btn margin-bottom-1em" ng-click="adminCtrl.createAdmin()"><i
+
+                        class="material-icons left">add</i>Create</a>
+
+                <a id="btn-update-admin" class="waves-effect waves-light btn margin-bottom-1em" ng-click="adminCtrl.updateAdmin(admin.id)"><i
+
+                        class="material-icons left">edit</i>Save Changes</a>
+
+                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i
+
+                        class="material-icons left">close</i>Close</a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -23,6 +23,13 @@
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/set-params.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/lib/modules/utils.js",
         "C:/wamp64/www/gestionApprenant2/bower_components/sweetalert/test/tests.js",
-        "C:/wamp64/www/gestionApprenant2/bower_components/restangular/dist/restangular.js"
+        "C:/wamp64/www/gestionApprenant2/bower_components/restangular/dist/restangular.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/gulpfile.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/test/tests.js",
+        "C:/wamp64/www/SimplonRFront2/web/js/moment.js",
+        "C:/wamp64/www/SimplonRFront2/web/js/main.js",
+        "C:/wamp64/www/SimplonRFront2/web/js/app.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/sweetalert.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/utils.js"
     ]
 }

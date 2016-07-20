@@ -1,0 +1,239 @@
+<!doctype html>
+<html ng-app="simplonR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SimplonR</title>
+    <link rel="stylesheet" href="web/font-awesome/css/font-awesome.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css">
+    <!-- include material design icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="web/css/main.css">
+
+</head>
+
+<body id="home" ng-controller="ApprenantsController as apprenantCtrl">
+
+    <div ng-controller="AuthController as authCtrl">
+
+
+        <!-- Dropdown menu -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a class="modal-trigger" href="#modal-trainer-form" ng-click="trainerCtrl.showCreateForm()"><i class="fa fa-user" aria-hidden="true"></i>  Créer un formateur</a>
+            </li>
+            <li class="divider"></li>
+            <li><a class="modal-trigger" href="#modal-admin-form" ng-click="adminCtrl.showCreateForm()"><i class="fa fa-user-plus" aria-hidden="true"></i>  Créer un administrateur</a>
+            </li>
+        </ul>
+        <!-- Dropdown end -->
+
+
+
+        <!-- Navbar authentification/administration -->
+        <nav>
+            <div class="nav-wrapper container">
+                <a href="#home" class="brand-logo">Simplon R</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
+                    </li>
+
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1" ng-show="authCtrl.isAuth">Administration<i class="material-icons right">arrow_drop_down</i></a></li>
+
+
+
+                    <li><a href="#" class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se déconnecter" ng-click="authCtrl.logOut()" ng-show="authCtrl.isAuth">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar end -->
+
+
+
+        <!-- Modal authentification form -->
+        <modal-login></modal-login>
+        <!-- Modal form end -->
+
+
+
+        <div class="container center" ng-show="!authCtrl.isAuth">
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="card-panel cyan">
+
+                        <span class="white-text">Groupe :Mathieu, Elliot[scrum master], Guillaume<br>Objectif : <br>======= <br>Une application web permettant le suivi des apprenants de Simplon Réunion <br>Brief <br>==== <br>Le suivi début depuis la demande de candidature. Lorsque le candidat rempli le formulaire de candidature, l'application récupère les informations du candidats. <br>Ces informations sont : <br>date de création,Prénom, NOM, Date de naissance,Lieu de naissance,Pays de naissance,Adresse,Nationalité,Email,Numéro de téléphone,Nom profil Codecademy, niveau d'anglais (lu/écrit), dernier diplôme obtenu, Numéro Pôle Emploi <br>Une fois la personne dans l'application elle a un de ces statuts : candidat, apprenant, diplomé.Comme cela, Simplon Réunion aura a la possibilité de la suivre tout au long de son parcours chez depuis la candidature jusqu'au placement/insertion. <br>Les formateurs et dirigeants de Simplon Réunion peuvent lister toutes les candidatures/apprenants, les modifier ou les supprimer.L'application pourra permettre de lier une note pour chaque apprenant.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div ng-controller="TrainerController as trainerCtrl">
+            <div class="container" ng-show="authCtrl.isAuth">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>List of trainer</h4>
+                        <section ng-init="trainerCtrl.getAll()">
+                            <input type="text" ng-model="searchText" class="" placeholder="Find trainer">
+                            <div class="col s12 m6 l4" ng-repeat="user in trainerCtrl.users | filter:searchText">
+                                <div class="card" ng-hide="!user.trainer">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title activator grey-text text-darken-4">{[{user.trainer.firstname}]} {[{user.trainer.surname | uppercase}]}<i
+                                class="material-icons right">more_vert</i></span>
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">{[{user.trainer.firstname}]} {[{user.trainer.surname | uppercase}]}<i class="material-icons right">close</i></span>
+                                        <p><strong>Adress :</strong> {[{ user.trainer.adress }]}</p>
+                                        <p><strong>Phone :</strong> {[{ user.trainer.phone }]}</p>
+                                        <p><strong>Skills :</strong> {[{ user.trainer.skills }]}</p>
+                                        <a ng-click="trainerCtrl.selectTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                           class="material-icons left">edit</i>Edit</a>
+                                    </div>
+                                    <a ng-click="trainerCtrl.deleteTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+
+                                class="material-icons left">delete</i>Delete</a>
+                                </div>
+                            </div>
+
+
+
+                        </section>
+
+                        <!-- Modal Create Trainer -->
+                            <modal-trainer></modal-trainer>
+                        <!-- Modal end -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+        
+        <div ng-controller="AdminController as adminCtrl">
+            <modal-admin></modal-admin>
+        </div>
+
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col s12" ng-show="authCtrl.isAuth">
+                    <h4>List of applicants</h4>
+                    <section ng-init="apprenantCtrl.getAll()">
+                        <input type="text" ng-model="searchText" class="" placeholder="Find applicant">
+                        <div class="col s12 m6 l4" ng-repeat="apprenant in apprenantCtrl.products | filter:searchText">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Superman-facebook.svg/2000px-Superman-facebook.svg.png">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i class="material-icons right">more_vert</i></span>
+                                    <p><a href="#">{[{ apprenant.status }]}</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">{[{apprenant.firstname}]} {[{apprenant.surname | uppercase}]}<i
+                                class="material-icons right">close</i></span>
+                                    <p><strong>Birth date :</strong> {[{ apprenant.birth_date | date }]}</p>
+                                    <p><strong>Birth place :</strong> {[{ apprenant.birth_place }]}</p>
+                                    <p><strong>Birth country :</strong> {[{ apprenant.birth_country }]}</p>
+                                    <p><strong>Adress :</strong> {[{ apprenant.adress }]}</p>
+                                    <p><strong>Nationality :</strong> {[{ apprenant.nationality }]}</p>
+                                    <p><strong>Mail :</strong> {[{ apprenant.email }]}</p>
+                                    <p><strong>Phone number :</strong> {[{ apprenant.phone }]}</p>
+                                    <p><strong>English level :</strong> {[{ apprenant.english_level }]}</p>
+                                    <p><strong>Codecademy : </strong>{[{ apprenant.codecademy_profile }]}</p>
+                                    <p><strong>Last diploma : </strong>{[{ apprenant.last_diploma }]}</p>
+                                    <p><strong>Pole emploi : </strong>{[{ apprenant.pole_emploi_number }]}</p>
+
+                                    <a ng-click="apprenantCtrl.selectEdit(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                    class="material-icons left">edit</i>Edit</a>
+                                </div>
+
+                                <a ng-click="apprenantCtrl.deleteCandidat(apprenant.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                class="material-icons left">delete</i>Delete</a>
+                            </div>
+
+
+                        </div>
+                    </section>
+
+
+                    <!-- Modal Create Apprenant -->
+                    <modal-apprenant></modal-apprenant>
+                    <!-- Fin modal apprenant -->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed-action-btn" style="bottom:45px; right:24px;">
+            <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red tooltipped" href="#modal-product-form" ng-click="apprenantCtrl.showCreateForm()" data-position="left" data-delay="50" data-tooltip="Ajouter un candidat"><i class="large material-icons">add</i></a>
+        </div>
+
+
+    </div>
+    <!-- end col s12 -->
+
+    <!-- end row -->
+
+    <!-- end container -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
+    <script type="text/javascript" src="web/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="web/js/moment.js"></script>
+
+    <script type="text/javascript" src="web/js/app.js"></script>
+    <script type="text/javascript" src="web/js/controllers/authentification-controller.js"></script>
+    <script type="text/javascript" src="web/js/controllers/admin-controller.js"></script>
+    <script type="text/javascript" src="web/js/controllers/trainer-controller.js"></script>
+    <script type="text/javascript" src="web/js/controllers/apprenants-controller.js"></script>
+
+    <script type="text/javascript" src="web/js/directives/loginUser/loginUser.js"></script>
+    <script type="application/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script type="application/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // initialize modal
+            $('.modal-trigger').leanModal();
+
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 100, // Creates a dropdown of 15 years to control year
+            });
+
+            $('.dropdown-button').dropdown({
+                inDuration: 300
+                , outDuration: 225
+                , constrain_width: false, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'right' // Displays dropdown with edge aligned to the right of button
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
