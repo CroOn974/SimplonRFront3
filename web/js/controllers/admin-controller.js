@@ -77,9 +77,7 @@ angular.module('simplonR').controller('AdminController', ['$http', function ($ht
 
           store.clearForm();
 
-          // refresh the list
-
-          store.getAll();
+         
 
       });
 

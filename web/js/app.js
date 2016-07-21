@@ -33,13 +33,7 @@
         };
     });
 
-    app.directive('modalTrainer', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'web/js/directives/modals/modal-trainer.html',
-            
-        };
-    });  
+    
     
     
     app.directive('modalAdmin', function(){

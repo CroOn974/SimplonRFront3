@@ -18,6 +18,12 @@
 <body id="home" ng-controller="ApprenantsController as apprenantCtrl">
 
     <div ng-controller="AuthController as authCtrl">
+       <div ng-controller="TrainerController as trainerCtrl">
+       
+       <!-- Modal Create Trainer -->
+                           <!-- <modal-trainer></modal-trainer>-->
+                           <modal-create-trainer></modal-create-trainer>
+        <!-- Modal end -->
 
 
         <!-- Dropdown menu -->
@@ -33,7 +39,7 @@
 
 
         <!-- Navbar authentification/administration -->
-        <nav>
+        <nav ng-init="trainerCtrl.request()">
             <div class="nav-wrapper container">
                 <a href="#home" class="brand-logo">Simplon R</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -41,7 +47,7 @@
                     <li><a href="#modalLogin" class="modal-trigger tooltipped" data-delay="50" data-position="bottom" data-tooltip="Se connecter" ng-show="!authCtrl.isAuth"><i class="large material-icons">perm_identity</i></a>
                     </li>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1" ng-show="authCtrl.isAuth">Administration<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1" ng-show="authCtrl.isAuth && trainerCtrl.isAdmin">Administration<i class="material-icons right">arrow_drop_down</i></a></li>
 
 
 
@@ -75,9 +81,9 @@
 
 
 
-        <div ng-controller="TrainerController as trainerCtrl">
+     
             <div class="container" ng-show="authCtrl.isAuth">
-                <div class="row">
+                <div class="row" ng-show="trainerCtrl.isAdmin">
                     <div class="col s12">
                         <h4>List of trainer</h4>
                         <section ng-init="trainerCtrl.getAll()">
@@ -96,10 +102,10 @@
                                         <p><strong>Adress :</strong> {[{ user.trainer.adress }]}</p>
                                         <p><strong>Phone :</strong> {[{ user.trainer.phone }]}</p>
                                         <p><strong>Skills :</strong> {[{ user.trainer.skills }]}</p>
-                                        <a ng-click="trainerCtrl.selectTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                        <a ng-click="trainerCtrl.selectTrainer(user.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
                                            class="material-icons left">edit</i>Edit</a>
                                     </div>
-                                    <a ng-click="trainerCtrl.deleteTrainer(trainer.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
+                                    <a ng-click="trainerCtrl.deleteTrainer(user.id)" class="waves-effect waves-light btn margin-bottom-1em"><i
 
                                 class="material-icons left">delete</i>Delete</a>
                                 </div>
@@ -109,9 +115,7 @@
 
                         </section>
 
-                        <!-- Modal Create Trainer -->
-                            <modal-trainer></modal-trainer>
-                        <!-- Modal end -->
+                        
 
                     </div>
 
@@ -181,7 +185,7 @@
             </div>
         </div>
 
-        <div class="fixed-action-btn" style="bottom:45px; right:24px;">
+        <div class="fixed-action-btn" style="bottom:45px; right:24px;" ng-show="authCtrl.isAuth">
             <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red tooltipped" href="#modal-product-form" ng-click="apprenantCtrl.showCreateForm()" data-position="left" data-delay="50" data-tooltip="Ajouter un candidat"><i class="large material-icons">add</i></a>
         </div>
 
@@ -202,6 +206,7 @@
     <script type="text/javascript" src="web/js/moment.js"></script>
 
     <script type="text/javascript" src="web/js/app.js"></script>
+    <script type="text/javascript" src="web/js/directives/createTrainer/createTrainer.js"></script>
     <script type="text/javascript" src="web/js/controllers/authentification-controller.js"></script>
     <script type="text/javascript" src="web/js/controllers/admin-controller.js"></script>
     <script type="text/javascript" src="web/js/controllers/trainer-controller.js"></script>

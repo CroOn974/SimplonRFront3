@@ -30,6 +30,14 @@
         "C:/wamp64/www/SimplonRFront2/web/js/main.js",
         "C:/wamp64/www/SimplonRFront2/web/js/app.js",
         "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/sweetalert.js",
-        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/utils.js"
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/utils.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/dev/modules/handle-key.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/dev/modules/handle-swal-dom.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/default-params.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/handle-click.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/handle-dom.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/handle-key.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/handle-swal-dom.js",
+        "C:/wamp64/www/SimplonRFront2/bower_components/sweetalert/lib/modules/injected-html.js"
     ]
 }
